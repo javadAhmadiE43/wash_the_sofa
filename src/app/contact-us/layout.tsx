@@ -1,3 +1,5 @@
+import { Container } from "@/components";
+import BreadCrunbPath from "@/components/shared/BreadCrunbPath";
 import type { Metadata } from "next";
 interface Props {
   readonly children: React.ReactNode;
@@ -9,12 +11,13 @@ export const metadata: Metadata = {
 export default function layout({ children }: Props) {
   return (
     <div>
-      <div
-        className={`relative flex flex-col justify-center items-center bg-bg-image-header bg-center bg-no-repeat bg-cover h-[70vh]
-        before:content-[''] before:absolute before:bg-[#001892] before:h-full before:w-full before:opacity-75
-      `}
-      ></div>
-      {children}
+      <Container className="md:p-0 p-0 md:mt-16">
+        <BreadCrunbPath
+          title="تماس با ما"
+          className="rounded-none before:rounded-none"
+        />
+        {children}
+      </Container>
     </div>
   );
 }

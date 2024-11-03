@@ -17,6 +17,7 @@ const config: Config = {
         "banner-1": "url('/images/banner-1.png')",
         "banner-2": "url('/images/banner-2.jpg')",
         "banner-3": "url('/images/banner-3.png')",
+        "banner-7": "url('/images/banner-7.png')",
       },
       colors: {
         background: "hsl(var(--background))",
@@ -66,7 +67,8 @@ const config: Config = {
         sm: "calc(var(--radius) - 4px)",
       },
       boxShadow: {
-        boxSerice: "rgba(0, 0, 0, 0.1) 0px 4px 12px",
+        boxSerice:
+          "rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px",
       },
       keyframes: {
         "accordion-down": {

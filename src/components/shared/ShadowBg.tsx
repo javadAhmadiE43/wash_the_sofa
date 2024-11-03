@@ -9,32 +9,62 @@ export function ShadowBg({ children }: { children: React.ReactNode }) {
     if (show) {
       document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "auto";
+      document.body.style.overflow = "initial";
     }
   }, [show]);
 
+  const babbling = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    e.stopPropagation();
+    setShow(!show);
+  };
+
   return (
-    <>
+    <div className="">
       <button
-        onClick={() => setShow(!show)}
-        className={`flex md:hidden absolute top-4 right-8 border border-[#ffab00] rounded-full p-2 cursor-pointer`}
+        onClick={(e) => setShow(!show)}
+        className={`flex md:hidden absolute top-4 right-8 border border-[#838B95] rounded-full p-2 cursor-pointer`}
       >
-        <AlignJustify color="white" size={20} />
+        <AlignJustify size={20} className="text-[#838B95]" />
       </button>
       <div
-        onClick={() => setShow(!show)}
-        className={`${
-          show ? "w-[100vw] min-h-screen" : "!w-0 min-h-0"
-        } delay-200 relative  bg-black/65 min-h-screen w-[100vw] overflow-hidden p-0 md:hidden`}
+        onClick={(e) => babbling(e)}
+        className={`absolute transition-[width] duration-500 ease-in-out delay-100  h-screen z-30 ${
+          show ? "w-screen" : "!min-w-0 w-0"
+        } left-0 right-0 top-0  bg-[#4977E5]/65   overflow-hidden md:hidden`}
+      ></div>
+      <div
+        className={`transition-[width] duration-500 ease-in-out absolute top-0 right-0 h-screen z-50 ${
+          show ? "w-[47vw]" : "!min-w-0 w-0"
+        }`}
       >
-        <div
-          className={`animate-in  transition-transform ease-in-out delay-0 ${
-            show ? "translate-x-0" : "translate-x-96"
-          }`}
-        >
-          {children}
-        </div>
+        {children}
       </div>
-    </>
+    </div>
+  );
+}
+
+export function FixedBg({ children }: { children: React.ReactNode }) {
+  const [bgNavbar, setBgNavbar] = useState<boolean>(false);
+  function scrollNav(e: Event) {
+    if (window.scrollY > 100) {
+      setBgNavbar(true);
+    } else {
+      setBgNavbar(false);
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener("scroll", scrollNav);
+    return () => window.removeEventListener("scroll", scrollNav);
+  }, []);
+
+  return (
+    <div
+      className={`fixed top-0 left-0 right-0 z-50 ${
+        bgNavbar ? "bg-[#0384E7]/75 text-white" : "bg-white"
+      }`}
+    >
+      {children}
+    </div>
   );
 }

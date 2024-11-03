@@ -1,6 +1,5 @@
 import React from "react";
 import { Container, Title } from "../shared";
-import { Separator } from "../ui/separator";
 import Image from "next/image";
 
 interface BoxRight {
@@ -25,33 +24,25 @@ const listBox: BoxRight[] = [
   },
 ];
 
-const color: string[] = ["#007cfa", "#ffab00", "#f235a6"];
-
 export default function SectionServices() {
   return (
     <Container>
-      <section className=" space-y-3 mt-24">
+      <section className=" space-y-9 md:mt-10">
         {/*  */}
-        <div className="flex justify-center items-center">
-          <h3 className="text-primary text-xs">
+        <div className="flex flex-col justify-center items-center gap-y-2 mb-5">
+          <Title text="خدمات ما" size="lg" />
+          <h3 className="text-[#838B95] text-xs">
             ارائه بهترین خدمات با قیمت مناسب
           </h3>
         </div>
         {/*  */}
-        <div className="flex items-center gap-x-2">
-          <Separator className="bg-gray-300 flex-1" />
-          <Title text="خدمات ما" size="lg" />
-          <Separator className="bg-gray-300 flex-1" />
-        </div>
-        {/*  */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-y-3 items-center justify-center gap-x-14">
-          {listBox?.map((service: BoxRight, index) => (
+        <div className="flex flex-col md:flex-row gap-4 items-center justify-center ">
+          {listBox?.map((service: BoxRight) => (
             <Card
               title={service.title}
               dec={service.dec}
               imgUrl={service.imgUrl}
               key={service.id}
-              bg={color[index]}
             />
           ))}
         </div>
@@ -64,20 +55,23 @@ interface Props {
   title: string;
   dec: string;
   imgUrl: string;
-  bg: string;
 }
 
-const Card = ({ title, dec, imgUrl, bg }: Props) => {
+const Card = ({ title, dec, imgUrl }: Props) => {
   return (
     <div
-      className={`bg-[${bg}] flex flex-col items-center min-w-96 space-y-4  rounded-xl px-4 py-9 transition-all cursor-pointer shadow-boxSerice`}
+      className={`group bg-white flex flex-col items-start space-y-4 p-6  rounded-xl transition-all cursor-pointer shadow-boxSerice min-h-[284.76px] min-w-[360px] max-w-[360px] max-h-[284.76px] hover:bg-[#4977E5] overflow-hidden`}
     >
-      <div className={`rounded-full  border`}>
-        <Image src={imgUrl} alt={title} width={100} height={100} />
+      <div
+        className={`flex items-center justify-center bg-[#86A8FB] group-hover:bg-transparent rounded-full p-2 group-hover:text-white`}
+      >
+        <Image src={imgUrl} alt={title} width={70} height={70} className="" />
       </div>
-      <div className="flex flex-col items-center gap-2">
-        <Title text={title} size="sm" className="" />
-        <p className="whitespace-pre-wrap">{dec}</p>
+      <div className="flex flex-col items-start gap-4 group-hover:text-white">
+        <Title text={title} size="sm" className="text-start" />
+        <p className="whitespace-pre-wrap text-start text-xs text-[#838B95] group-hover:text-white truncate">
+          {dec}
+        </p>
       </div>
     </div>
   );

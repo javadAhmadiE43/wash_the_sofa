@@ -1,12 +1,12 @@
 import Navbar, { MenuMobile } from "./Navbar";
-import { Container } from "./Container";
+import { FixedBg } from "./ShadowBg";
 
 export default function Header() {
   return (
-    <header className={`absolute top-0 left-0 right-0 z-40 `}>
-      <Container className="px-4">
+    <header>
+      <FixedBg>
         <Navbar />
-      </Container>
+      </FixedBg>
       <MenuMobile />
     </header>
   );

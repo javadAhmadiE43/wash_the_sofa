@@ -1,5 +1,4 @@
 import { Container, Title } from "../shared";
-import { Separator } from "../ui/separator";
 import {
   Accordion,
   AccordionContent,
@@ -38,14 +37,10 @@ const list: ListItmes[] = [
 export default function Frequently_asked_questions() {
   return (
     <Container>
-      <section className=" mt-14 p-2 space-y-4">
-        <div className="flex flex-col items-center">
-          <p className="text-sm text-blue-800">سوالات پر تکرار</p>
-        </div>
-        <div className="flex items-center gap-x-2">
-          <Separator className="bg-gray-300 flex-1" />
+      <section className=" mt-16 p-2 space-y-4">
+        <div className="flex flex-col items-center space-y-4 mb-7">
           <Title text="سوالات متداول" size="md" className="" />
-          <Separator className="bg-gray-300 flex-1" />
+          <p className="text-sm text-[#838B95]">سوالات پر تکرار</p>
         </div>
         <div className="">
           <Accordion
@@ -57,7 +52,7 @@ export default function Frequently_asked_questions() {
               <AccordionItem
                 key={item.id}
                 value={item.title}
-                className="border border-gray-300 rounded-2xl p-2"
+                className="border border-gray-300 rounded-2xl p-2 cursor-pointer"
               >
                 <AccordionTrigger>{item.title}</AccordionTrigger>
                 <AccordionContent>{item.dec}</AccordionContent>
